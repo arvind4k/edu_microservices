@@ -1,14 +1,12 @@
 package com.talooz.ms.users.dao;
 
-import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.talooz.ms.users.model.User;
+import com.talooz.ms.users.entity.ApplicationUser;
 
-@RepositoryRestResource(collectionResourceRel = "user", path = "user")
-public interface UserRepository extends CrudRepository<User, Long>	 {
-	List<User> findByUsername(@Param("username") String username);
+public interface UserRepository extends CrudRepository<ApplicationUser, Long> {
+
+	ApplicationUser findByUsername(String username);
+
+	ApplicationUser findByUsernameAndPassword(String username, String password);
 }
