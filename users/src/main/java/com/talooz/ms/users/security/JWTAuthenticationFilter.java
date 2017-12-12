@@ -1,5 +1,10 @@
 package com.talooz.ms.users.security;
 
+import static com.talooz.ms.users.security.SecurityConstants.EXPIRATION_TIME;
+import static com.talooz.ms.users.security.SecurityConstants.HEADER_STRING;
+import static com.talooz.ms.users.security.SecurityConstants.SECRET;
+import static com.talooz.ms.users.security.SecurityConstants.TOKEN_PREFIX;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +18,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,11 +26,6 @@ import com.talooz.ms.users.entity.ApplicationUser;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
-import static com.talooz.ms.users.security.SecurityConstants.EXPIRATION_TIME;
-import static com.talooz.ms.users.security.SecurityConstants.HEADER_STRING;
-import static com.talooz.ms.users.security.SecurityConstants.SECRET;
-import static com.talooz.ms.users.security.SecurityConstants.TOKEN_PREFIX;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -51,7 +52,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain,
 			Authentication auth) throws IOException, ServletException {
 
-		String token = Jwts.builder().setSubject(((ApplicationUser) auth.getPrincipal()).getUsername())
+		String token = Jwts.builder().setSubject(((User) auth.getPrincipal()).getUsername())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 				.signWith(SignatureAlgorithm.HS512, SECRET.getBytes()).compact();
 		res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
