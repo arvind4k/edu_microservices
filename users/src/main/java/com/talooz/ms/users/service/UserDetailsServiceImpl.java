@@ -4,12 +4,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.talooz.ms.users.dao.UserRepository;
 import com.talooz.ms.users.entity.ApplicationUser;
 
 import static java.util.Collections.emptyList;
 
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	private UserRepository userRepository;
