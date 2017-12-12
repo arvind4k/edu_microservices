@@ -1,7 +1,5 @@
 package com.talooz.ms.users.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,22 +8,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USERS")
-public class ApplicationUser implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class ApplicationUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long userId;
+	private Long id;
 	private String username;
 	private String password;
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUserId(Long id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
