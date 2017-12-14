@@ -1,9 +1,9 @@
 package com.talooz.ms.users.controller;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.talooz.ms.users.dao.UserRepository;
@@ -20,7 +20,7 @@ public class UserController {
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
-	@PostMapping("/sign-up")
+	@RequestMapping(value = "/sign-up", method = RequestMethod.POST)
 	public void signUp(@RequestBody User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
