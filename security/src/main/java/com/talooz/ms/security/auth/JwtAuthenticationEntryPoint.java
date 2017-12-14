@@ -1,4 +1,4 @@
-package com.talooz.ms.users.security;
+package com.talooz.ms.security.auth;
 
 import java.io.IOException;
 import java.io.Serializable;

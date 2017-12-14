@@ -1,13 +1,13 @@
-package com.talooz.ms.users;
+package com.talooz.ms.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@SpringBootApplication(scanBasePackages = { "com.talooz.ms.users" })
-//@EnableDiscoveryClient
-public class UsersMicroserviceServerApplication {
+@SpringBootApplication(scanBasePackages = { "com.talooz.ms.security" })
+// @EnableDiscoveryClient
+public class SecurityMicroserviceServerApplication {
 	
 	@Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -15,6 +15,6 @@ public class UsersMicroserviceServerApplication {
     }
 	
 	public static void main(String[] args) {
-		SpringApplication.run(UsersMicroserviceServerApplication.class, args);
+		SpringApplication.run(SecurityMicroserviceServerApplication.class, args);
 	}
 }

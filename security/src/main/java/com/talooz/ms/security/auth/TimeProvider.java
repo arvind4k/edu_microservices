@@ -1,4 +1,4 @@
-package com.talooz.ms.users.security;
+package com.talooz.ms.security.auth;
 
 import org.springframework.stereotype.Component;
 

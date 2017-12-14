@@ -1,4 +1,4 @@
-package com.talooz.ms.users.security.controller;
+package com.talooz.ms.security.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.talooz.ms.users.entity.ApplicationUser;
-import com.talooz.ms.users.security.JwtAuthenticationResponse;
-import com.talooz.ms.users.security.JwtTokenUtil;
+import com.talooz.ms.security.auth.JwtAuthenticationResponse;
+import com.talooz.ms.security.auth.JwtTokenUtil;
+import com.talooz.ms.security.model.ApplicationUser;
 
 @RestController
 public class AuthenticationController {

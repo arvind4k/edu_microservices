@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.talooz.ms</groupId>
-	<artifactId>com.talooz.ms.finance</artifactId>
+	<artifactId>com.talooz.ms.security</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>finance-services</name>
-	<description>It is microservice server of finance module using Spring Boot</description>
+	<name>security-services</name>
+	<description>It is microservice server of security using Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -19,6 +19,7 @@
 	</parent>
 	<properties>
         <java.version>1.8</java.version>
+        <jjwt.version>0.7.0</jjwt.version>
     </properties>
 	<dependencies>
 		<dependency>
@@ -34,6 +35,10 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
@@ -41,13 +46,23 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.4</version>
 		</dependency>
-		
-		 <!-- <dependency>
+		<!-- <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency> -->

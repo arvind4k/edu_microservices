@@ -1,4 +1,4 @@
-package com.talooz.ms.users.security;
+package com.talooz.ms.security.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -16,6 +16,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
+	
 	private UserDetailsService userDetailsService;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	private JwtAuthenticationEntryPoint unauthorizedHandler;

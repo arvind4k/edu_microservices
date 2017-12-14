@@ -1,4 +1,6 @@
-package com.talooz.ms.users.service;
+package com.talooz.ms.security.auth.service;
+
+import static java.util.Collections.emptyList;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,10 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.talooz.ms.users.dao.UserRepository;
-import com.talooz.ms.users.entity.ApplicationUser;
-
-import static java.util.Collections.emptyList;
+import com.talooz.ms.security.dao.UserRepository;
+import com.talooz.ms.security.model.ApplicationUser;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
