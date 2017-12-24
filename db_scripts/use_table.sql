@@ -3,6 +3,7 @@ create table users (
 user_id int NOT NULL AUTO_INCREMENT,
 username varchar(200) not null,
 first_name varchar(20) not null,
+password varchar(50) not null,
 last_name varchar(20) ,
 middle_name varchar(20) ,
 dob varchar(20),
