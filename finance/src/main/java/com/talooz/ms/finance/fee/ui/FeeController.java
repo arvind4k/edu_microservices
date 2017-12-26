@@ -40,21 +40,22 @@ public class FeeController {
 
 	@Autowired
 	public FeeController(FeeCategoryRepository feeCategoryRepository,
-			FeeBatchMappingRespository feeBatchMappingRespository, FeeParticularRepository feeParticularRepository,FineSlabRepository fineSlabRepository,FineRepository fineRepository) {
+			FeeBatchMappingRespository feeBatchMappingRespository, FeeParticularRepository feeParticularRepository,
+			FineSlabRepository fineSlabRepository, FineRepository fineRepository) {
 		this.feeCategoryRepository = feeCategoryRepository;
 		this.feeBatchMappingRespository = feeBatchMappingRespository;
 		this.feeParticularRepository = feeParticularRepository;
-		this.fineRepository=fineRepository;
-		this.fineSlabRepository=fineSlabRepository;
+		this.fineRepository = fineRepository;
+		this.fineSlabRepository = fineSlabRepository;
 	}
 
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public FeeCategory[] listAll() {
 		logger.info("finance-microservice, listAll() invoked");
 		List<FeeCategory> fees = feeCategoryRepository.findFeeCategories();
 		return fees.toArray(new FeeCategory[fees.size()]);
 	}
-	
+
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public FeeCategory[] listAll(@RequestBody Page page) {
 		logger.info("finance-microservice, listAll() invoked");
@@ -81,7 +82,7 @@ public class FeeController {
 		feeCategory.setFeeBatchMapping(mappings);
 		return feeCategory;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody FeeCategory saveOrUpdate(@RequestBody FeeCategory feeCategory) {
 		List<FeeBatchMapping> batchMapping = feeCategory.getFeeBatchMapping();
@@ -118,7 +119,7 @@ public class FeeController {
 		List<FeeParticular> particulars = feeParticularRepository.findByFeeCategoryIdAndBatchId(feeCategoryId, batchId);
 		return particulars.toArray(new FeeParticular[particulars.size()]);
 	}
-	
+
 	@RequestMapping(value = "/particulars/{particularId}", method = RequestMethod.GET)
 	public FeeParticular getFeeParticularsById(@PathVariable("particularId") Long particularId) {
 		return feeParticularRepository.findById(particularId);
@@ -126,7 +127,7 @@ public class FeeController {
 
 	@RequestMapping(value = "/particular", method = RequestMethod.POST)
 	public @ResponseBody FeeParticular[] saveOrUpdateParticulars(@RequestBody FeeParticular[] feeParticulars) {
-		for(int i=0;i<feeParticulars.length;i++){
+		for (int i = 0; i < feeParticulars.length; i++) {
 			if (null != feeParticulars[i].getParticularId()) {
 				feeParticulars[i].setUpdationDate(new Date());
 			} else {
@@ -135,36 +136,35 @@ public class FeeController {
 			}
 			feeParticularRepository.save(feeParticulars[i]);
 		}
-		
+
 		return feeParticulars;
 	}
-	
-	@RequestMapping(value="/fine", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/fine", method = RequestMethod.POST)
 	public @ResponseBody Fine saveOrUpdateFines(@RequestBody Fine fine) {
-		if (fine.getFineId().intValue()==0) {
+		if (fine.getFineId().intValue() == 0) {
 			fine.setCreationDate(new Date());
 			fine.setFineId(null);
 		}
-		
 		List<FineSlab> fineSlabs = fine.getFineSlabs();
 		for (int i = 0; i < fineSlabs.size(); i++) {
 			fineSlabs.get(i).setFine(fine);
 		}
-		
+
 		fineRepository.save(fine);
 		fine.setFineSlabs(null);
 		List<FineSlab> fineSlabList = fineSlabRepository.findFineSlabsByFineId(fine.getFineId());
 		fine.setFineSlabs(fineSlabList);
 		return fine;
 	}
-	
-	@RequestMapping(value="/fine", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/fine", method = RequestMethod.GET)
 	public @ResponseBody Fine[] findAllFines() {
-		List<Fine> fineList= fineRepository.findAllFines();
+		List<Fine> fineList = fineRepository.findAllFines();
 		return fineList.toArray(new Fine[fineList.size()]);
 	}
-	
-	@RequestMapping(value="/fine/{fineId}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/fine/{fineId}", method = RequestMethod.GET)
 	public @ResponseBody Fine findFineById(@PathVariable("fineId") Integer fineId) {
 		Fine fine = fineRepository.findFineById(fineId);
 		List<FineSlab> fineSlabList = fineSlabRepository.findFineSlabsByFineId(fine.getFineId());

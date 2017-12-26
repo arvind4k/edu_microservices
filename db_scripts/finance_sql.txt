@@ -36,8 +36,9 @@ create table fee_particulars(
 fee_category_id int(11) not null,
 particular_id int(11) not null auto_increment,
 name varchar(200) not null,
-description varchar(200) not null,
+description varchar(200),
 amount float(14,2) not null,
+input_as varchar(50),
 batch_id int(5) not null,
 batch_name varchar(200) not null,
 obsolete int(1) not null default 0,
@@ -118,3 +119,13 @@ insert into batches(batch_name,batch_description) values ('First','First');
 insert into batches(batch_name,batch_description) values ('Second','Second');
 
 insert into batches(batch_name,batch_description) values ('Third','Third');
+
+insert into discount_category(name,description,category_id) 
+values('Student Category','Setting up discount for a specific category e.g. staff child etc.','Category.STUDENT_CATEGORY');
+
+insert into discount_category(name,description,category_id) 
+values('Student','Setting up discount for a specific student','Category.STUDENT');
+
+insert into discount_category(name,description,category_id) 
+values('Batch','Setting up discount for a specific batch','Category.BATCH');
+
