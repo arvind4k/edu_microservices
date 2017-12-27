@@ -23,7 +23,8 @@ public class User implements Serializable {
 	private String lastName;
 	private Integer obsolete;
 	private String password;
-	
+	private Integer termsAndCondition;
+
 	public String getPassword() {
 		return password;
 	}
@@ -33,7 +34,6 @@ public class User implements Serializable {
 	}
 
 	private String dob;
-	
 
 	public Long getUserId() {
 		return userId;
@@ -66,7 +66,7 @@ public class User implements Serializable {
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
 	}
-	
+
 	public String getLastName() {
 		return lastName;
 	}
@@ -74,7 +74,7 @@ public class User implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public Integer getObsolete() {
 		return obsolete;
 	}
@@ -90,5 +90,13 @@ public class User implements Serializable {
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
-	
+
+	public Integer getTermsAndCondition() {
+		return termsAndCondition;
+	}
+
+	public void setTermsAndCondition(Integer termsAndCondition) {
+		this.termsAndCondition = termsAndCondition;
+	}
+
 }

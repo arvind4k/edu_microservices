@@ -21,8 +21,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/sign-up", method = RequestMethod.POST)
-	public void signUp(@RequestBody User user) {
+	public User signUp(@RequestBody User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
+		return user;
 	}
 }
