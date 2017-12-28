@@ -23,10 +23,18 @@ public class Transport implements Serializable {
 	private Long routeId;
 	private String routeName;
 	private String transportMode;
+	private Integer entityId;
 	private Integer obsolete;
 	@OneToMany(mappedBy="transport",cascade = CascadeType.ALL)
     private List<TransportParticulars> transportParticulars;
 	
+	
+	public Integer getEntityId() {
+		return entityId;
+	}
+	public void setEntityId(Integer entityId) {
+		this.entityId = entityId;
+	}
 	
 	public Long getRouteId() {
 		return routeId;

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import com.talooz.ms.admin.entity.TransportParticulars;
 
 
 
+
 @RestController
 @RequestMapping("/transport")
 public class TransportController {
@@ -25,18 +27,20 @@ public class TransportController {
 
 	private TransportRepository transportRepository;
 	
+	
 	@Autowired
 	public TransportController(TransportRepository transportRepository) {
 		this.transportRepository = transportRepository;
 	}
-	/*
-	@RequestMapping(method=RequestMethod.GET)
-	public Transport[] listAll() {
-		logger.info("admin-microservice, listAll() invoked");
-		List<Transport> transports = transportRepository.
-				findFeeCategories();
+	
+	@RequestMapping(value = "/{routeId}/{entityId}", method=RequestMethod.GET)
+	public Transport[] transportListByRouteIdAndEntityId(@PathVariable("routeId") Long routeId,@PathVariable("entityId") Integer entityId)  {
+		
+		logger.info("admin-microservice, transportListByRouteIdAndEntityId() invoked");
+		List<Transport> transports = transportRepository.findByRouteIdAndEntityId(routeId,entityId);
 		return transports.toArray(new Transport[transports.size()]);
-	}*/
+		
+	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public @ResponseBody Transport saveOrUpdate(@RequestBody Transport transport){
@@ -44,12 +48,11 @@ public class TransportController {
 		for(int i=0;i<transportParticulars.size();i++){
 			transportParticulars.get(i).setTransport(transport);
 		}
-		/*feeCategory.setCreationDate(new Date());
-		feeCategory.setUpdationDate(new Date());*/
+	
 		transportRepository.save(transport);
-		transport.setTransportParticulars(null);
+		/*transport.setTransportParticulars(null);
 		List<TransportParticulars> mappings = transportRepository.findByRouteId(transport.getRouteId());
-		transport.setTransportParticulars(mappings);
+		transport.setTransportParticulars(mappings);*/
 		return transport;
 	}
 }
