@@ -33,11 +33,20 @@ public class TransportController {
 		this.transportRepository = transportRepository;
 	}
 	
-	@RequestMapping(value = "/{routeId}/{entityId}", method=RequestMethod.GET)
-	public Transport[] transportListByRouteIdAndEntityId(@PathVariable("routeId") Long routeId,@PathVariable("entityId") Integer entityId)  {
+	@RequestMapping(value = "/{entityId}/{routeId}", method=RequestMethod.GET)
+	public Transport[] transportListByRouteIdAndEntityId(@PathVariable("entityId") Integer entityId, @PathVariable("routeId") Long routeId)  {
 		
 		logger.info("admin-microservice, transportListByRouteIdAndEntityId() invoked");
-		List<Transport> transports = transportRepository.findByRouteIdAndEntityId(routeId,entityId);
+		List<Transport> transports = transportRepository.findByEntityIdAndRouteId(entityId, routeId);
+		return transports.toArray(new Transport[transports.size()]);
+		
+	}
+	
+	@RequestMapping(value = "/{entityId}", method=RequestMethod.GET)
+	public Transport[] transportListByRouteIdAndEntityId(@PathVariable("entityId") Integer entityId)  {
+		
+		logger.info("admin-microservice, transportListByEntityId() invoked");
+		List<Transport> transports = transportRepository.findByEntityId(entityId);
 		return transports.toArray(new Transport[transports.size()]);
 		
 	}

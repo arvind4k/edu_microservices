@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "TRANSPORT_PARTICULARS")
 public class TransportParticulars implements Serializable {
@@ -22,6 +24,7 @@ public class TransportParticulars implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ROUTE_ID")
 	//private Long routeId;
+    @JsonIgnore
     private Transport transport;
 	private Integer stopCost;
 	private String stopName;

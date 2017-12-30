@@ -14,8 +14,8 @@ import com.talooz.ms.admin.entity.TransportParticulars;
 public interface TransportRepository extends CrudRepository<Transport, Long>	 {
 	List<TransportParticulars> findByRouteId(@Param("routeId") Long routeId);
 	
-	//List<Transport> findByRouteIdAndEntityId(@Param("entityId") Integer entityId);
+	List<Transport> findByEntityId(@Param("entityId") Integer entityId);
 	
-	List<Transport> findByRouteIdAndEntityId(@Param("routeId") Long routeId, @Param("entityId") Integer entityId);
+	List<Transport> findByEntityIdAndRouteId(@Param("entityId") Integer entityId, @Param("routeId") Long routeId);
 	
 }
