@@ -18,8 +18,6 @@ import com.talooz.ms.admin.entity.Transport;
 import com.talooz.ms.admin.entity.TransportParticulars;
 
 
-
-
 @RestController
 @RequestMapping("/transport")
 public class TransportController {
