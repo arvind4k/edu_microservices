@@ -8,6 +8,8 @@ password varchar(500) not null,
 email varchar(100),
 dob date,
 obsolete int,
+terms_and_condition int,
+entity_id int,
 primary key (user_id)
 );
 
