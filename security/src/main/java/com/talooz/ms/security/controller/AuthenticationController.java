@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.talooz.ms.security.auth.JwtAuthenticationResponse;
 import com.talooz.ms.security.auth.JwtTokenUtil;
+import com.talooz.ms.security.dao.UserRepository;
 import com.talooz.ms.security.model.ApplicationUser;
 
 @RestController
@@ -33,6 +34,9 @@ public class AuthenticationController {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody ApplicationUser user) throws AuthenticationException {
@@ -44,9 +48,10 @@ public class AuthenticationController {
 
         // Reload password post-security so we can generate token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
+        
         final String token = jwtTokenUtil.generateToken(userDetails);
-
+        ApplicationUser applicationUser = userRepository.findByUsername(user.getUsername());
         // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token,applicationUser.getUsername(),applicationUser.getUserId(),applicationUser.getFirstName(),applicationUser.getLastName(),null,null,null));
     }
 }
