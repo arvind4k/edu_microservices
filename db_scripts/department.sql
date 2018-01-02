@@ -10,9 +10,9 @@ create table Department (
 
 create table DepartmentParticulars (
      subject_id int(11) not null auto_increment,
-     departmentId int(11),
-     subjectName varchar(25),
-     subSubjectName varchar(25),
+     department_Id int(11),
+     subject_Name varchar(25),
+     sub_Subject_Name varchar(25),
      obsolete int(1),
     primary key (subject_id)
 );

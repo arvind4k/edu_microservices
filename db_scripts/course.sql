@@ -9,7 +9,7 @@ create table Course (
 );
 
 create table CourseParticulars(
-     record_id int,
+     record_id int not null auto_increment,
      course_id int,
      department_id int,
      subject_id int,
