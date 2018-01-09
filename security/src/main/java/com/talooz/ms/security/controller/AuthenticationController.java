@@ -52,6 +52,6 @@ public class AuthenticationController {
         final String token = jwtTokenUtil.generateToken(userDetails);
         ApplicationUser applicationUser = userRepository.findByUsername(user.getUsername());
         // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token,applicationUser.getUsername(),applicationUser.getUserId(),applicationUser.getFirstName(),applicationUser.getLastName(),null,null,null));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token,applicationUser.getUsername(),applicationUser.getUserId(),applicationUser.getFirstName(),applicationUser.getLastName(),null,null,null,applicationUser.getProfileComplete()));
     }
 }

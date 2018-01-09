@@ -17,6 +17,8 @@ public class ApplicationUser {
 	private String password;
 	private String firstName;
 	private String lastName;
+	private Integer profileComplete;
+	private Integer termsAndCondition;
 
 	public Long getUserId() {
 		return userId;
@@ -56,5 +58,21 @@ public class ApplicationUser {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Integer getProfileComplete() {
+		return profileComplete;
+	}
+
+	public void setProfileComplete(Integer profileComplete) {
+		this.profileComplete = profileComplete;
+	}
+
+	public Integer getTermsAndCondition() {
+		return termsAndCondition;
+	}
+
+	public void setTermsAndCondition(Integer termsAndCondition) {
+		this.termsAndCondition = termsAndCondition;
 	}
 }

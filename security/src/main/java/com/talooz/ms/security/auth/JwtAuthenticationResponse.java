@@ -14,9 +14,10 @@ public class JwtAuthenticationResponse implements Serializable {
 	private final Long schoolYearId;
 	private final String schoolYear;
 	private final Long eorgId;
+	private final Integer profileCompelte;
 
 	public JwtAuthenticationResponse(String token, String username, Long userId, String firstName, String lastName,
-			Long schoolYearId, String schoolYear, Long eorgId) {
+			Long schoolYearId, String schoolYear, Long eorgId, Integer profileComplete) {
 		this.token = token;
 		this.username = username;
 		this.userId = userId;
@@ -25,6 +26,7 @@ public class JwtAuthenticationResponse implements Serializable {
 		this.schoolYearId = schoolYearId;
 		this.schoolYear = schoolYear;
 		this.eorgId=eorgId;
+		this.profileCompelte=profileComplete;
 	}
 
 	public String getToken() {
@@ -57,5 +59,9 @@ public class JwtAuthenticationResponse implements Serializable {
 
 	public Long getEorgId() {
 		return eorgId;
+	}
+
+	public Integer getProfileCompelte() {
+		return profileCompelte;
 	}
 }
