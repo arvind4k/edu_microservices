@@ -26,7 +26,19 @@ create table student_school_details(
  course_id int not null,
  section_id int,
  enrollment_date date not null,
+ student_category varchar(100),
  primary key(student_school_id)
+);
+
+create table additional_details(
+ additional_info_id int not null auto_increment,
+ user_id int not null,
+ nationality varchar(100) not null,
+ birth_place varchar(50),
+ religion varchar(20),
+ caste varchar(20),
+ subcaste varchar(20),
+ primary key(additional_info_id)
 );
 
 create table student_previous_qualification(
