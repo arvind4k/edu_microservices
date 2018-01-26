@@ -27,6 +27,7 @@ create table student_school_details(
  section_id int,
  enrollment_date date not null,
  student_category varchar(100),
+ transport_id int,
  primary key(student_school_id)
 );
 
@@ -41,19 +42,30 @@ create table additional_details(
  primary key(additional_info_id)
 );
 
-create table student_previous_qualification(
+create table education_details(
+ education_id int not null auto_increment,
  user_id int not null,
- class varchar not null,
- enrollment_date date not null,
+ course varchar(100) not null,
  grade varchar(50),
  score varchar(10),
  institution varchar(200),
  university varchar(200),
  passing_year int(4),
- primary key(user_id)
+ obsolete int(1),
+ primary key(education_id)
 );
 
-create table guardian(
+create table parent_details(
+	guardian_id number not null auto_increment,
+	user_id int not null,
+	relationship varchar(50),
+	first_name varchar(100) not null,
+	last_name varchar(100),
+	email varchar(100),
+	phone varchar(20),
+	mobile varchar(20),
+	qualification varchar(50),
+	primary key(guardian_id)
 )
 
 create table address (
@@ -70,4 +82,16 @@ state varchar(50),
 obsolete int,
 primary key (address_id)
 );
+
+create table identity_documents(
+document_id int Not null AUTO_INCREMENT,
+user_id int not null,
+document_name varchar(100) not null,
+document_number varchar(100) not null,
+issued_by varchar(100) not null,
+valid_until date not null,
+document_path varchar(500),
+obsolete int(1) not null,
+primary key(document_id)
+)
 

@@ -22,7 +22,6 @@ public class Address implements Serializable {
 	private String addressType;
 	@Column (name="module_id")
 	private Integer modId;
-	
 	private String address1;
 	private String address2;
 	private String country;

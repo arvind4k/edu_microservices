@@ -9,9 +9,7 @@ import com.talooz.ms.common.entity.*;
 @Configuration
 public class RepositoryConfig extends RepositoryRestConfigurerAdapter {
 	@Override
-    public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 		config.exposeIdsFor(Address.class);
 	}
 }
-
-
