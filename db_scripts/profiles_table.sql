@@ -83,7 +83,7 @@ obsolete int,
 primary key (address_id)
 );
 
-create table identity_documents(
+create table documents(
 document_id int Not null AUTO_INCREMENT,
 user_id int not null,
 document_name varchar(100) not null,
