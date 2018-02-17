@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "APPLICATION_USERS")
+@Table(name = "USERS")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +40,6 @@ public class User implements Serializable {
 	private Date updationDate;
 	private Integer profileComplete;
 	private Integer termsAndCondition;
-	private String nationality;
 	
 	public Long getUserId() {
 		return userId;
@@ -149,11 +148,5 @@ public class User implements Serializable {
 	}
 	public void setProfileComplete(Integer profileComplete) {
 		this.profileComplete = profileComplete;
-	}
-	public String getNationality() {
-		return nationality;
-	}
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
 	}
 }
